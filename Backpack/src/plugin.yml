@@ -1,0 +1,28 @@
+name: Backpacks
+main: me.N4TH4NOT.Backpack.Main
+version: "1.0"
+author: N4TH4NOT
+api-version: "1.15"
+description: Private plugin for Eliaze
+default-permission: false
+website: https://github.com/N4TH4NOT/SpigotMC-Backpack
+
+permissions:
+  eliaze.linked_backpack.lv0:
+    description: Allow to get backpack with 4 slots
+  eliaze.linked_backpack.lv1:
+    description: Allow to get backpack with 9 slots
+  eliaze.linked_backpack.lv2:
+    description: Allow to get backpack with 18 slots
+  eliaze.linked_backpack.lv3:
+    description: Allow to get backpack with 27 slots
+  eliaze.linked_backpack.lv4:
+    description: Allow to get backpack with 36 slots
+  eliaze.linked_backpack.lv5:
+    description: Allow to get backpack with 45 slots
+  eliaze.linked_backpack.lv6:
+    description: Allow to get backpack with 54 slots
+
+commands:
+  backpack:
+    description: Open your private packpack

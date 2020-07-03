@@ -1,0 +1,9 @@
+linked-backpack:
+  slot: 9
+  title: "&2Backpack of {name}"
+  button:
+    material: "CHEST"
+    display-name: "&4Backpack"
+    lore:
+      - "&6This is your backpack"
+  drop-content-on-death: false
