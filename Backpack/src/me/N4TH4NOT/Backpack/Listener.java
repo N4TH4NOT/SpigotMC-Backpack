@@ -30,9 +30,9 @@ public class Listener
     public void onDrop(EntityDropItemEvent e) {
         if (b(e.getItemDrop().getItemStack())) {
             if (e.getEntity() instanceof Player)
-                e.getItemDrop().remove();
-            else
                 e.setCancelled(true);
+            else
+                e.getItemDrop().remove();
         }
     }
 
