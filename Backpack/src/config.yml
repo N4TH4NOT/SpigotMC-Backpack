@@ -6,4 +6,3 @@ linked-backpack:
     display-name: "&4Backpack"
     lore:
       - "&6This is your backpack"
-  drop-content-on-death: false

@@ -1,28 +1,46 @@
 name: Backpacks
-main: me.N4TH4NOT.Backpack.Main
-version: "1.0"
+main: me.n4th4not.backpacks.Main
+version: "1.0.2"
 author: N4TH4NOT
-api-version: "1.15"
+api-version: "1.16"
 description: Private plugin for Eliaze
 default-permission: false
 website: https://github.com/N4TH4NOT/SpigotMC-Backpack
 
 permissions:
+  eliaze.backpacks:
+    description: Get all permission of this plugin
+    children:
+      - eliaze.linked_backpack.others.edit
+      - eliaze.linked_backpack.safe
+      - eliaze.linked_backpack.no_button
   eliaze.linked_backpack.lv0:
-    description: Allow to get backpack with 4 slots
+    description: Get linked backpack with 5 slots
   eliaze.linked_backpack.lv1:
-    description: Allow to get backpack with 9 slots
+    description: Get linked backpack with 9 slots
   eliaze.linked_backpack.lv2:
-    description: Allow to get backpack with 18 slots
+    description: Get linked backpack with 18 slots
   eliaze.linked_backpack.lv3:
-    description: Allow to get backpack with 27 slots
+    description: Get linked backpack with 27 slots
   eliaze.linked_backpack.lv4:
-    description: Allow to get backpack with 36 slots
+    description: Get linked backpack with 36 slots
   eliaze.linked_backpack.lv5:
-    description: Allow to get backpack with 45 slots
+    description: Get linked backpack with 45 slots
   eliaze.linked_backpack.lv6:
-    description: Allow to get backpack with 54 slots
+    description: Get linked backpack with 54 slots
+  eliaze.linked_backpack.others:
+    description: See linked backpack of other players
+  eliaze.linked_backpack.others.edit:
+    decription: See and edit linked backpack of other players
+    children:
+      - eliaze.linked_backpack.others
+  eliaze.linked_backpack.safe:
+    description: Keep backpack content on death
+  eliaze.linked_backpack.lockdown:
+    description: Can not edit your own backpack or backpack from others
+  eliaze.linked_backpack.no_button:
+    description: Do not try to give a backpack button
 
 commands:
   backpack:
-    description: Open your private packpack
+    description: Open your private packpack and more options for moderation ;)

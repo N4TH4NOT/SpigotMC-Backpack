@@ -1,0 +1,67 @@
+# linked_backpack_locked_for_you
+'00': '&cYour backpack was been locked by an operator.'
+# linked_backpack_wrong_gamemode
+'01': '&cYou can not open your backpack in %gamemode%.'
+# GameMode.SURVIVAL
+gamemode_1: 'survival'
+# GameMode.CREATIVE
+gamemode_0: 'creative'
+# GameMode.ADVENTURE
+gamemode_2: 'adventure'
+# GameMode.SPECTATOR
+gamemode_3: 'spectator'
+# linked_backpack_not_see_others
+'02': '&cYou do not have permission to see linked backpack of an other player!'
+# linked_backpack_no_backpack_for_you
+'03': '&cYou do not have the permission to have a linked backpack.'
+# linked_backpack_no_backpack_for_target
+'04': '&c%nick% do not have the permission to have a linked backpack.'
+# linked_backpack_corrupted_for_you
+'05': '&cYour linked backpack is corrupted, report that to an operator to restore your stuff.'
+# linked_backpack_corrupted_for_target
+'06': '&c%nick''s linked backpack is corrupted, report that to an operator to restore his backpack.'
+# linked_backpack_lockdown_block_modification
+'07': '&cThis backpack is &4lockdown&c so you can not edit his content.'
+# player_not_found (use %name% to show the specified name)
+'08': '&cThis player does not exists or is offline.'
+# linked_backpack_target_cleared
+'09': '&cThe linked backpack of %nick% has been cleared.'
+# internal_error
+0A: '&cAn error was occurred, check out the console for more information.'
+# linked_backpack_backup_created
+0B: 'A backup of %nick%''s linked backpack was been created.'
+# command_backpack_wrong_arg_or_no_permission
+0C: '&cThis iz no da wey :)'
+# command_backpack_usage
+0D: |-
+  Usage: /%command% [open|clear|backup|help]
+    open: <player_name>
+    clear|backup: <player_name> [notes]
+# command_backpack_wrong_arg
+0E: '&cWrong or not enough argument, use ''help'' or TAB.'
+# linked_backpack_free_up_space_chat
+0F: '&cImpossible to give you the button, free up space to access to your linked backpack again!'
+# linked_backpack_free_up_space_title_up_line
+10: '&4Error'
+# linked_backpack_free_up_space_title_down_line
+11: '&cFree up space to get the button'
+# linked_backpack_added_chat
+12: '&aYou received the button in your inventory !'
+# linked_backpack_added_title_up_line
+13: '&2Linked Backpack'
+# linked_backpack_added_title_down_line
+14: '&aButton received'
+# linked_backpack_removed_chat
+15: '&cThe button has been removed from your inventory !'
+# linked_backpack_removed_title_up_line
+16: '&4Linked Backpack'
+# linked_backpack_removed_title_down_line
+17: '&cButton removed'
+# config_reloaded
+18: '&eAll configuration files have been reloaded!'
+# configuration_updated_chat
+19: '&eYour button has been update to matches to the configuration.'
+# configuration_updated_title_up
+1A: '&6Linked backpack'
+# configuration_updated_title_down
+1B: '&eButton updated !'
