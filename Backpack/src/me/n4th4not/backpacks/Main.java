@@ -136,7 +136,13 @@ public final class Main
             if (var0.hasPermission(Permission.LINKED_BACKPACK_LOCKDOWN.perm)) {
                 var0.sendMessage(getMessage("00"));
                 return;
-            } else if (!Listener.a(var0.getGameMode())) {
+            }
+            else if (!(var0.hasPermission(Permission.LINKED_BACKPACK_BYPASS_WHITELIST.perm)
+                    || Main.ins.set.isWhitelisted(var0.getWorld()))) {
+                var0.sendMessage(getMessage("1C"));
+                return;
+            }
+            else if (!Listener.a(var0.getGameMode())) {
                 var0.sendMessage(Utilities.Placeholder.a("01",var0.getGameMode()));
                 return;
             }

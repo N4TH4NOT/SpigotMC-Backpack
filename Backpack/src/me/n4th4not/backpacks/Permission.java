@@ -15,6 +15,7 @@ public final class Permission {
     public static final A<Void> LINKED_BACKPACK_EDIT_OTHERS = new A<>("others.edit",1,null);
     public static final A<Void> LINKED_BACKPACK_IGNORE_DEATH = new A<>("safe",1,null);
     public static final A<Void> LINKED_BACKPACK_LOCKDOWN = new A<>("lockdown",1,null);
+    public static final A<Void> LINKED_BACKPACK_BYPASS_WHITELIST = new A<>("everywhere",1,null);
 
     public static final class A<T> {
 
@@ -34,7 +35,7 @@ public final class Permission {
                 case 0: return "";
                 case 1: return LINKED_BACKPACK;
                 default:
-                    throw new IllegalStateException("Not implemented yet.");
+                    throw new UnsupportedOperationException("Not implemented yet.");
             }
         }
     }

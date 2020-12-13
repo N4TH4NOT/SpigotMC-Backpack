@@ -1,6 +1,6 @@
 name: Backpacks
 main: me.n4th4not.backpacks.Main
-version: "1.0.2"
+version: "1.0.3"
 author: N4TH4NOT
 api-version: "1.16"
 description: Private plugin for Eliaze
@@ -40,7 +40,9 @@ permissions:
     description: Can not edit your own backpack or backpack from others
   eliaze.linked_backpack.no_button:
     description: Do not try to give a backpack button
+  eliaze.linked_backpack.everywhere:
+    description: No world restriction
 
 commands:
   backpack:
-    description: Open your private packpack and more options for moderation ;)
+    description: Open your private packpack and more options for moderators ;)

@@ -1,8 +1,12 @@
 linked-backpack:
   slot: 9
-  title: "&2Backpack of {name}"
+  title: "&2Backpack of %nick%"
   button:
     material: "CHEST"
     display-name: "&4Backpack"
     lore:
       - "&6This is your backpack"
+world-whitelist:
+  - world
+  - world_nether
+  - world_the_end

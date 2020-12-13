@@ -11,10 +11,7 @@ import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.player.PlayerGameModeChangeEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -28,13 +25,9 @@ public class Listener
     static final List<UUID> A = new ArrayList<>();
     //fail to give the button
     static final List<UUID> B = new ArrayList<>();
-    /**
-     * Disable click action of the tile (backpack will not opened)
-     */
-    public static boolean a = true;
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onClick(InventoryClickEvent e) {
+    public void a(InventoryClickEvent e) {
         if (A.contains(e.getWhoClicked().getUniqueId())) e.setCancelled(true);
         else if (Utilities.Item.a(e.getCurrentItem())
                 || (e.getHotbarButton() != -1 && Utilities.Item.a(e.getView().getItem(e.getHotbarButton())))) {
@@ -43,14 +36,14 @@ public class Listener
                 case DOUBLE_CLICK:
                 case LEFT:
                     B.remove(e.getWhoClicked().getUniqueId());
-                    if (a) Main.openBackpack(e.getWhoClicked(), e.getWhoClicked());
+                    Main.openBackpack(e.getWhoClicked(), e.getWhoClicked());
                 default:
             }
         }
     }
 
     @EventHandler
-    public void onDrop(EntityDropItemEvent e) {
+    public void a(EntityDropItemEvent e) {
         if (Utilities.Item.a(e.getItemDrop().getItemStack())) {
             if (e.getEntityType() == EntityType.PLAYER) e.setCancelled(true);
             else e.getItemDrop().remove();
@@ -58,9 +51,9 @@ public class Listener
     }
 
     @EventHandler
-    public void onDeath(PlayerDeathEvent e) {
+    public void a(PlayerDeathEvent e) {
         e.getDrops().removeIf(Utilities.Item::a);
-        if (!(e.getKeepInventory()
+        if (Main.getSettings().isWhitelisted(e.getEntity().getWorld()) && !(e.getKeepInventory()
                 || e.getEntity().hasPermission(Permission.LINKED_BACKPACK_IGNORE_DEATH.perm)
                 || e.getEntity().hasPermission(Permission.LINKED_BACKPACK_LOCKDOWN.perm))
         && a(e.getEntity().getGameMode())) {
@@ -78,31 +71,38 @@ public class Listener
     }
 
     @EventHandler
-    public void onRespawn(PlayerRespawnEvent e) {
+    public void a(PlayerRespawnEvent e) {
         a(e.getPlayer(),0);
     }
 
     @EventHandler
-    public void onGameModeSwitch(PlayerGameModeChangeEvent e) {
+    public void a(PlayerGameModeChangeEvent e) {
         final boolean var0 = a(e.getNewGameMode());
         if (var0 != a(e.getPlayer().getGameMode())) {
-            if (var0 && !e.getPlayer().hasPermission(Permission.NO_LINKED_BACKPACK_BUTTON.perm)) a(e.getPlayer(),0x6);
+            if (var0 && !e.getPlayer().hasPermission(Permission.NO_LINKED_BACKPACK_BUTTON.perm)
+                    && (e.getPlayer().hasPermission(Permission.LINKED_BACKPACK_BYPASS_WHITELIST.perm)
+                    || Main.getSettings().isWhitelisted(e.getPlayer().getWorld()))) a(e.getPlayer(),0x6);
             else a(e.getPlayer(),0xA);
         }
     }
 
     @EventHandler
-    public void onClose(InventoryCloseEvent e) {
+    public void a(InventoryCloseEvent e) {
         Listener.A.remove(e.getPlayer().getUniqueId());
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
+    public void a(PlayerChangedWorldEvent var0) {
+        a(var0.getPlayer(),(Main.getSettings().isWhitelisted(var0.getPlayer().getWorld())? 0 : 8) | 2);
+    }
+
+    @EventHandler
+    public void a(PlayerJoinEvent e) {
         Bukkit.getScheduler().runTaskLaterAsynchronously(Main.ins,() -> a(e.getPlayer(),0x1),20L);
     }
 
     @EventHandler
-    public void onLeave(PlayerQuitEvent e) {
+    public void a(PlayerQuitEvent e) {
         Main.ins.a(e.getPlayer().getUniqueId(),0);
         a(e.getPlayer(),0xC);
     }
@@ -123,18 +123,20 @@ public class Listener
         if ((var1 >> 4 & 3) == 0) {
             switch (var1 >> 2 & 3) {
                 case 0:
-                    if (var0.hasPermission(Permission.NO_LINKED_BACKPACK_BUTTON.perm) || !a(var0.getGameMode()))
+                    if (var0.hasPermission(Permission.NO_LINKED_BACKPACK_BUTTON.perm) || !a(var0.getGameMode())
+                            || !Main.getSettings().isWhitelisted(var0.getWorld()))
                         return 0;
                 case 1:
                     for (int var2 = 0; var2 < var0.getInventory().getSize(); var2++) {
                         if (var2 == Main.getSettings().getSlotLb()) {
                             ItemStack var3 = var0.getInventory().getItem(var2);
                             var0.getInventory().setItem(var2, Main.getSettings().getBackpackIcon());
-                            if (var3 != null && !var0.getInventory().addItem(var3).isEmpty()) {
-                                var0.getInventory().setItem(var2,var3);
+                            if (!Utilities.Item.a(var3) && var3 != null && !var0.getInventory().addItem(var3).isEmpty()) {
+                                var0.getInventory().setItem(var2, var3);
                                 if ((var1 & 3) == 1) var0.sendMessage(Main.getMessage("0F"));
-                                else if ((var1 & 3) == 2) var0.sendTitle(Main.getMessage("10"),Main.getMessage("11"),10,50,20);
-                                var0.getWorld().playSound(var0.getLocation(),Sound.ENTITY_VILLAGER_NO,1.0f,1.0f);
+                                else if ((var1 & 3) == 2)
+                                    var0.sendTitle(Main.getMessage("10"), Main.getMessage("11"), 10, 50, 20);
+                                var0.getWorld().playSound(var0.getLocation(), Sound.ENTITY_VILLAGER_NO, 1.0f, 1.0f);
                                 B.add(var0.getUniqueId());
                                 return -1;
                             }

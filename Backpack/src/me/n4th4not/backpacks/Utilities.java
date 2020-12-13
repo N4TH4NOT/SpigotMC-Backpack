@@ -63,19 +63,19 @@ public final class Utilities {
             }
             return var2.toString();
         }
-        public static String c(Object var0) {return var0 == null? "" : var0.toString();}
-        public static String c(Object var0, String var1) {return var0 == null? var1 : var0.toString();}
+        public static <T> String c(T var0) {return var0 == null? "" : var0.toString();}
+        public static <T> String c(T var0, String var1) {return var0 == null? var1 : var0.toString();}
 
         public static String d(Location var0) {
             World var1 = var0.getWorld();
-            return  "x=" + var0.getBlockX() + ", y=" + var0.getBlockY() + ", z=" + var0.getBlockZ();
+            return (var1 == null? "<unloaded>" : var1.getName()) + "[x=" + var0.getBlockX() + ", y=" + var0.getBlockY() + ", z=" + var0.getBlockZ() + "]";
         }
     }
     public static final class Item {
-        public static final NamespacedKey A = new NamespacedKey("backpacks","id");
+        public static final NamespacedKey A = new NamespacedKey("backpack","id");
 
         public static boolean a(ItemStack var0) {
-            try {return var0.getItemMeta().getPersistentDataContainer().get(A, PersistentDataType.BYTE) == (byte) 1;}
+            try {return var0.getItemMeta().getPersistentDataContainer().get(A,PersistentDataType.BYTE) == (byte) 1;}
             catch (Exception ex) {return false;}
         }
     }

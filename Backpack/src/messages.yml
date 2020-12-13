@@ -65,3 +65,5 @@ gamemode_3: 'spectator'
 1A: '&6Linked backpack'
 # configuration_updated_title_down
 1B: '&eButton updated !'
+# world_not_whitelisted
+1C: '&cLinked backpack is not allowed in this world!'
